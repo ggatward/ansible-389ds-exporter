@@ -15,8 +15,8 @@ ExecStart=/usr/local/bin/389ds_exporter \
   -ldap.user="{{ 389ds_user }}" \
   -ldap.pass="{{ 389ds_password }}" \
   -interval="{{ 389ds_scrape_interval }}" \
-  --web.listen-address={{ 389ds_exporter_web_listen_address }}{% for flag, flag_value in 389ds_config_flags_extra.items() %}\
-  --{{ flag }}{% if flag_value %}={{ flag_value }}{% endif %} {% endfor %}
+  -web.listen-address={{ 389ds_exporter_web_listen_address }}{% for flag, flag_value in 389ds_config_flags_extra.items() %}\
+  -{{ flag }}{% if flag_value %}={{ flag_value }}{% endif %} {% endfor %}
 
 PrivateTmp=true
 PrivateDevices=true
