@@ -1,7 +1,7 @@
 ---
 - name: Allow 389ds_exporter port in SELinux on RedHat OS family
   seport:
-    ports: "{{ 389ds_exporter_web_listen_address.split(':')[1] }}"
+    ports: "{{ ldap_389ds_exporter_web_listen_address.split(':')[1] }}"
     proto: tcp
     setype: http_port_t
     state: present

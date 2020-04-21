@@ -14,16 +14,16 @@ All variables which can be overridden are stored in [defaults/main.yml](defaults
 
 | Name           | Default Value | Description                        |
 | -------------- | ------------- | -----------------------------------|
-| `389ds_exporter_version` | 0.1.2 | 389ds_exporter package version |
-| `389ds_exporter_web_listen_address` | "0.0.0.0:9496" | Address on which 389ds_exporter will listen |
+| `ldap_389ds_exporter_version` | 0.1.2 | 389ds_exporter package version |
+| `ldap_389ds_exporter_web_listen_address` | "0.0.0.0:9496" | Address on which 389ds_exporter will listen |
 
 
-| `389ds_scrape_address` | localhost:389 | Address of the 389ds LDAP instance |
-| `389ds_user` | cn=DirectoryManager | User to access 389ds |
-| `389ds_password` | 'ChangeMe' | Password of the user accessing 389ds |
-| `389ds_ipa_domain` | example.org | IPA domain to query |
-| `389ds_scrape_interval` | 1m | How often to poll LDAP for data |
-| `389ds_exporter_config_flags_extra` | {} | Additional configuration flags passed at startup to 389ds_exporter binary |
+| `ldap_389ds_scrape_address` | localhost:389 | Address of the 389ds LDAP instance |
+| `ldap_389ds_user` | cn=DirectoryManager | User to access 389ds |
+| `ldap_389ds_password` | 'ChangeMe' | Password of the user accessing 389ds |
+| `ldap_389ds_ipa_domain` | example.org | IPA domain to query |
+| `ldap_389ds_scrape_interval` | 1m | How often to poll LDAP for data |
+| `ldap_389ds_exporter_config_flags_extra` | {} | Additional configuration flags passed at startup to 389ds_exporter binary |
 
 
 ## Example
@@ -36,6 +36,6 @@ Use it in a playbook as follows:
   roles:
     - 389ds_exporter
   vars:
-    389ds_ipa_domain: ipa.example.com
-    389ds_password: 'Itsa$ecret'
+    ldap_389ds_ipa_domain: ipa.example.com
+    ldap_389ds_password: 'Itsa$ecret'
 ```
