@@ -1,0 +1,63 @@
+---
+- name: Install dependencies
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ 389ds_exporter_dependencies }}"
+
+- name: Create the 389ds_exporter group
+  group:
+    name: "{{ 389ds_exporter_system_group }}"
+    state: present
+    system: true
+
+- name: Create the 389ds_exporter user
+  user:
+    name: "{{ 389ds_exporter_system_user }}"
+    groups: "{{ 389ds_exporter_system_group }}"
+    append: true
+    shell: /usr/sbin/nologin
+    system: true
+    createhome: false
+    home: /
+
+- name: Download 389ds_exporter binary to local folder
+  become: false
+  get_url:
+    url: "https://github.com/terrycain/389ds_exporter/releases/download/v{{ 389ds_exporter_version }}/389ds_exporter-{{ 389ds_exporter_version }}.linux-{{ go_arch_map[ansible_architecture] | default(ansible_architecture) }}.tar.gz"
+    dest: "/tmp/389ds_exporter-{{ 389ds_exporter_version }}.linux-{{ go_arch_map[ansible_architecture] | default(ansible_architecture) }}.tar.gz"
+#    checksum: "sha256:{{ 389ds_exporter_checksum }}"
+  register: _download_binary
+  until: _download_binary is succeeded
+  retries: 5
+  delay: 2
+  delegate_to: localhost
+  check_mode: false
+
+- name: Unpack 389ds_exporter binary
+  become: false
+  unarchive:
+    src: "/tmp/389ds_exporter-{{ 389ds_exporter_version }}.linux-{{ go_arch_map[ansible_architecture] | default(ansible_architecture) }}.tar.gz"
+    dest: "/tmp"
+    creates: "/tmp/389ds_exporter"
+  delegate_to: localhost
+  check_mode: false
+
+- name: Propagate 389ds_exporter binaries
+  copy:
+    src: "/tmp/389ds_exporter"
+    dest: "/usr/local/bin/389ds_exporter"
+    mode: 0750
+    owner: "{{ 389ds_exporter_system_user }}"
+    group: "{{ 389ds_exporter_system_group }}"
+  notify: restart 389ds_exporter
+  when: not ansible_check_mode
+
+- name: Copy the 389ds_exporter systemd service file
+  template:
+    src: 389ds_exporter.service.j2
+    dest: /etc/systemd/system/389ds_exporter.service
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart 389ds_exporter

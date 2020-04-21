@@ -1,0 +1,4 @@
+---
+389ds_exporter_dependencies:
+  - libselinux-python
+  - policycoreutils-python

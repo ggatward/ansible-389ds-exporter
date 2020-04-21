@@ -1,0 +1,13 @@
+---
+389ds_exporter_version: 0.1.2
+389ds_exporter_web_listen_address: "0.0.0.0:9496"
+
+389ds_scrape_address: localhost:389
+389ds_user: 'cn=DirectoryManager'
+389ds_password: 'ChangeMe'
+389ds_ipa_domain: example.org
+389ds_scrape_interval: 1m
+
+389ds_config_flags_extra: {}
+# 389ds_config_flags_extra:
+#   log.level: 'debug'

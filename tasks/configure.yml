@@ -1,0 +1,10 @@
+---
+- name: Allow 389ds_exporter port in SELinux on RedHat OS family
+  seport:
+    ports: "{{ 389ds_exporter_web_listen_address.split(':')[1] }}"
+    proto: tcp
+    setype: http_port_t
+    state: present
+  when:
+    - ansible_version.full is version_compare('2.4', '>=')
+    - ansible_selinux.status == "enabled"

@@ -1,0 +1,7 @@
+---
+- name: restart 389ds_exporter
+  become: true
+  systemd:
+    daemon_reload: true
+    name: 389ds_exporter
+    state: restarted
