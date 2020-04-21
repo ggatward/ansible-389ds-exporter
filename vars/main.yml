@@ -7,4 +7,4 @@ go_arch_map:
   armv6l: 'armv6'
 
 ldap_389ds_exporter_system_group: "ldap-exp"
-ldap_389ds_exporter_system_user: "{{ 389ds_exporter_system_group }}"
+ldap_389ds_exporter_system_user: "{{ ldap_389ds_exporter_system_group }}"

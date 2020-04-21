@@ -39,7 +39,7 @@
   unarchive:
     src: "/tmp/389ds_exporter-{{ ldap_389ds_exporter_version }}.linux-{{ go_arch_map[ansible_architecture] | default(ansible_architecture) }}.tar.gz"
     dest: "/tmp"
-    creates: "/tmp/389ds_exporter"
+    creates: "/tmp/389ds_exporter-{{ ldap_389ds_exporter_version }}.linux-{{ go_arch_map[ansible_architecture] }}/389ds_exporter"
   delegate_to: localhost
   check_mode: false
 
