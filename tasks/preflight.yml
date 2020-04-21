@@ -2,7 +2,7 @@
 - name: Naive assertion of proper listen address
   assert:
     that:
-      - "':' in 389ds_exporter_web_listen_address"
+      - "':' in ldap_389ds_exporter_web_listen_address"
 
 - name: Fail on unsupported init systems
   fail:
