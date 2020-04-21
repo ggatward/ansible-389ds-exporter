@@ -45,11 +45,12 @@
 
 - name: Propagate 389ds_exporter binaries
   copy:
-    src: "/tmp/389ds_exporter"
+    src: "/tmp/389ds_exporter-{{ ldap_389ds_exporter_version }}.linux-{{ go_arch_map[ansible_architecture] }}/389ds_exporter"
     dest: "/usr/local/bin/389ds_exporter"
     mode: 0750
     owner: "{{ ldap_389ds_exporter_system_user }}"
     group: "{{ ldap_389ds_exporter_system_group }}"
+    setype: bin_t
   notify: restart 389ds_exporter
   when: not ansible_check_mode
 
