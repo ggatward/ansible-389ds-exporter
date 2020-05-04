@@ -2,7 +2,7 @@
 
 ## Description
 
-Deploy prometheus [389ds_exporter](https://github.com/terrycain/389ds_exporter) using ansible.
+Deploy prometheus [389ds_exporter](https://github.com/exosite/389ds_exporter) using ansible.
 
 ## Requirements
 
