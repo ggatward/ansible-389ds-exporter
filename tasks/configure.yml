@@ -8,3 +8,12 @@
   when:
     - ansible_version.full is version_compare('2.4', '>=')
     - ansible_selinux.status == "enabled"
+
+- name: Write out config file
+  template:
+    src: 389ds_exporter.yml.j2
+    dest: "{{ ldap_389ds_config_file }}"
+    owner: "{{ ldap_389ds_exporter_system_user }}"
+    group: "{{ ldap_389ds_exporter_system_group }}"
+    mode: '0600'
+  when: ldap_389ds_config_file is defined

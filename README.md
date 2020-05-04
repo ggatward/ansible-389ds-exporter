@@ -16,8 +16,7 @@ All variables which can be overridden are stored in [defaults/main.yml](defaults
 | -------------- | ------------- | -----------------------------------|
 | `ldap_389ds_exporter_version` | 0.1.2 | 389ds_exporter package version |
 | `ldap_389ds_exporter_web_listen_address` | "0.0.0.0:9496" | Address on which 389ds_exporter will listen |
-
-
+| `ldap_389ds_config_file` | '' | Location of config file to use |
 | `ldap_389ds_scrape_address` | localhost:389 | Address of the 389ds LDAP instance |
 | `ldap_389ds_user` | cn=DirectoryManager | User to access 389ds |
 | `ldap_389ds_password` | 'ChangeMe' | Password of the user accessing 389ds |
