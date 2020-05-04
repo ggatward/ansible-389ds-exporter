@@ -43,7 +43,7 @@
 #   delegate_to: localhost
 #   check_mode: false
 
-- name: Unpack ovirt_exporter binary
+- name: Unpack 389ds_exporter binary
   become: false
   unarchive:
     src: "files/389ds_exporter-{{ ldap_389ds_exporter_version }}.linux-{{ go_arch_map[ansible_architecture] | default(ansible_architecture) }}.tar.gz"
